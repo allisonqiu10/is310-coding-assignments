@@ -1,22 +1,8 @@
-# Init IS310 Homework
+# IS310 Coding Assignments
 
-## Proof of Installation
+## Allison Qiu
 
-1. Python
+This repository contains my coding assignments for IS310.
 
-![Python Installation](images/python-installation.png)
-
-2. Git
-
-![Git Installation](images/git-installation.png)
-
-3. VS Code
-
-![VS Code Installation](images/vscode-installation.png)
-
-4. Hypothesis Username
-
-allisonqiu
-
-5. AI Tool/Workflow
-I plan to use ChatGPT this semester to help me understand coding concepts, troubleshoot errors, and work through unfamiliar coding processes.
+- Init IS310
+- Lost & Found in the Cultural Command Line
