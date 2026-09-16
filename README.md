@@ -1,23 +1,22 @@
-# IS310 Coding Assignments
+# Init IS310 Homework
 
-## Installation Evidence
+## Proof of Installation
 
-### Python and Git
+1. Python
 
-I have Python 3.9.6 and Git 2.50.1 installed.
+![Python Installation](images/python-installation.png)
 
-![Python and Git installation](images/python-git-installation.png)
+2. Git
 
-### Visual Studio Code
+![Git Installation](images/git-installation.png)
 
-I have Visual Studio Code installed.
+3. VS Code
 
-![VS Code installation](images/vscode-installation.png)
+![VS Code Installation](images/vscode-installation.png)
 
-## Hypothesis
+4. Hypothesis Username
 
-My Hypothesis username is: allisonqiu
+allisonqiu
 
-## AI Tools
-
-I use ChatGPT as an AI tool. I mainly use it to help explain coding concepts, understand errors, and walk me through unfamiliar coding processes. When using AI for course assignments, I will document relevant conversations in `ai-chat-log.md`.
+5. AI Tool/Workflow
+I plan to use ChatGPT this semester to help me understand coding concepts, troubleshoot errors, and work through unfamiliar coding processes.
