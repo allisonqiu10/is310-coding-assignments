@@ -1,0 +1,16 @@
+[
+    {
+        "title": "Spirited Away",
+        "country": "Japan",
+        "year": "2001",
+        "genre": "Anime",
+        "notes": "Japanese folklore and spirits"
+    },
+    {
+        "title": "Parasite",
+        "country": "Korea",
+        "year": "2019",
+        "genre": "Thriller",
+        "notes": "Social class and inequality in South Korea"
+    }
+]

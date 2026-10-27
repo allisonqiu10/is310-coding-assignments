@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cultural Media Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+            color: #222;
+        }
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: #555;
+        }
+
+        form {
+            background: white;
+            padding: 24px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 16px;
+            background: #243b53;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #102a43;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background: #e9eef2;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Cultural Media Collection</h1>
+    <p>Document films from different countries and cultures.</p>
+
+    <form id="mediaForm">
+        <label for="title">Film Title</label>
+        <input type="text" id="title" required>
+
+        <label for="country">Country</label>
+        <input type="text" id="country" required>
+
+        <label for="year">Release Year</label>
+        <input type="number" id="year" min="1888" required>
+
+        <label for="genre">Genre</label>
+        <input type="text" id="genre" required>
+
+        <label for="notes">Cultural Notes</label>
+        <textarea id="notes" rows="3" required></textarea>
+
+        <button type="submit">Add Film</button>
+    </form>
+
+    <p id="message" role="status"></p>
+
+    <h2>Collected Films</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Country</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody id="filmTable"></tbody>
+    </table>
+
+    <button type="button" id="downloadButton">
+        Download JSON
+    </button>
+
+    <script>
+        const form = document.getElementById("mediaForm");
+        const table = document.getElementById("filmTable");
+        const message = document.getElementById("message");
+
+        // Load previously entered films from this browser.
+        let films = JSON.parse(localStorage.getItem("films") || "[]");
+
+        function displayFilms() {
+            table.innerHTML = "";
+
+            films.forEach(function(film) {
+                const row = document.createElement("tr");
+
+                [
+                    film.title,
+                    film.country,
+                    film.year,
+                    film.genre,
+                    film.notes
+                ].forEach(function(value) {
+                    const cell = document.createElement("td");
+                    cell.textContent = value;
+                    row.appendChild(cell);
+                });
+
+                table.appendChild(row);
+            });
+        }
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const film = {
+                title: document.getElementById("title").value.trim(),
+                country: document.getElementById("country").value.trim(),
+                year: document.getElementById("year").value,
+                genre: document.getElementById("genre").value.trim(),
+                notes: document.getElementById("notes").value.trim()
+            };
+
+            const confirmed = confirm(
+                "Save this film?\n\n" +
+                "Title: " + film.title + "\n" +
+                "Country: " + film.country + "\n" +
+                "Year: " + film.year + "\n" +
+                "Genre: " + film.genre + "\n" +
+                "Notes: " + film.notes
+            );
+
+            if (!confirmed) {
+                message.textContent = "Entry not saved.";
+                return;
+            }
+
+            films.push(film);
+            localStorage.setItem("films", JSON.stringify(films));
+
+            displayFilms();
+            form.reset();
+            message.textContent = "Film saved successfully!";
+        });
+
+        document.getElementById("downloadButton")
+            .addEventListener("click", function() {
+                const json = JSON.stringify(films, null, 4);
+                const blob = new Blob([json], {
+                    type: "application/json"
+                });
+
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "cultural_media_web.json";
+                link.click();
+                URL.revokeObjectURL(url);
+            });
+
+        displayFilms();
+    </script>
+
+</body>
+</html>
